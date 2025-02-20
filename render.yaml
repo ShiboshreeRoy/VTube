@@ -1,7 +1,7 @@
 databases:
-  - name: vtube
-    databaseName: vtube
-    user: vtube
+  - name: mysite
+    databaseName: mysite
+    user: mysite
     plan: free
 
 services:
