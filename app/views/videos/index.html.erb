@@ -29,7 +29,9 @@
   </div>
 
   <!-- Video Grid -->
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="videos">
+  
+  <div class="row row-cols-1 row-cols-md-3 g-3"  id="videos">
+
     <% @videos.each do |video| %>
       <div class="col">
         <div class="card shadow-sm h-100">
@@ -37,7 +39,7 @@
           <div class="card-img-top position-relative">
             <% if video.video_file.attached? %>
               <div class="embed-responsive embed-responsive-16by9">
-                <%= video_tag url_for(video.video_file), controls: false, class: "embed-responsive-item w-100", id: "video-#{video.id}" %>
+                <%= video_tag url_for(video.video_file), controls: false, class: "embed-responsive-item w-100", id: "video-#{video.id}",  style: "width: 200px; height: 200px; object-fit: cover;" %>
                 <!-- Custom Controls -->
                 <div class="video-controls position-absolute bottom-0 start-0 end-0 p-3 bg-dark bg-opacity-75 d-flex justify-content-between align-items-center">
                   <button class="btn btn-link text-white p-0" onclick="togglePlayPause(<%= video.id %>)">
@@ -69,6 +71,11 @@
     <% end %>
   </div>
 </div>
+
+<div class="pagination">
+  <%= paginate @videos %>
+</div>
+
 
 <!-- JavaScript for Custom Video Controls -->
 <script>

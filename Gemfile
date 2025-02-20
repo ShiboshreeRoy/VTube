@@ -61,7 +61,6 @@ end
 
 gem "devise", "~> 4.9"
 gem "active_storage_validations", "~> 2.0"
-
 gem "cssbundling-rails", "~> 1.4"
-
 gem "ransack", "~> 4.3"
+gem "kaminari", "~> 1.2"

@@ -16,6 +16,7 @@
         <div>
           <h5 class="card-title fw-bold mb-0"><%= @video.title %></h5>
           <p class="text-muted mb-0"><small>Uploaded by <%= @video.user.email %></small></p>
+          <p class="text-muted mb-0"><smoll><%= time_ago_in_words(@video.created_at) %> ago</smoll></p>
         </div>
       </div>
 

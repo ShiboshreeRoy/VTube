@@ -4,6 +4,10 @@ class Video < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  validates :title, presence: true
+  validates :description, presence: true
+  
+
   def self.ransackable_associations(auth_object = nil)
     ["comments", "likes", "user", "video_file_attachment", "video_file_blob"]
   end

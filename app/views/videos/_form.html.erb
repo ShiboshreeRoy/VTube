@@ -41,7 +41,12 @@
 
       <!-- Submit Button -->
       <div class="mb-4">
+      <% if user_signed_in? %>
         <%= form.submit "Upload Video", class: "btn btn-primary w-100 fw-bold" %>
+      <% else %>
+         <%= form.submit "Upload Video", class: "btn btn-primary w-100 fw-bold disabled cursor-not-allowed" %>
+
+      <% end %>   
       </div>
     </div>
   </div>
