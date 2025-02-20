@@ -23,7 +23,10 @@ default: &default
 development:
   <<: *default
   database: video_platform_development
-  
+  username: postgres
+  password: shibu009@
+  host: localhost
+  port: 5432
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.

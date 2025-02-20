@@ -5,3 +5,5 @@ import "@popperjs/core";
 // Import Bootstrap (if not already imported)
 import "bootstrap";import "@hotwired/turbo-rails"
 import "controllers"
+import * as bootstrap from "bootstrap"
+import * as popper from "@popperjs/core"
