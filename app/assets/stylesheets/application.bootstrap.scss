@@ -1,11 +1,18 @@
 /*@import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+
+
+
+@use "bootstrap/scss/functions" as *;
+@use "bootstrap/scss/variables" as *;
 */
 
 
 @use "bootstrap/scss/functions" as *;
 @use "bootstrap/scss/variables" as *;
+@use "bootstrap" as *;
+// app/assets/stylesheets/application.bootstrap.scss
 
 .form-signin {
     max-width: 400px;
