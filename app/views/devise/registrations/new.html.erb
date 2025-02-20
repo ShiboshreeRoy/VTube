@@ -1,0 +1,40 @@
+<h2 class="text-center mb-4">Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-signup" }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <!-- Email Field -->
+  <div class="form-floating mb-3">
+    <%= f.email_field :email, class: "form-control", id: "floatingEmail", placeholder: "name@example.com", autofocus: true, autocomplete: "email" %>
+    <%= f.label :email, for: "floatingEmail" do %>
+      <i class="bi bi-envelope-fill me-2"></i>Email address
+    <% end %>
+  </div>
+
+  <!-- Password Field -->
+  <div class="form-floating mb-3">
+    <%= f.password_field :password, class: "form-control", id: "floatingPassword", placeholder: "Password", autocomplete: "new-password" %>
+    <%= f.label :password, for: "floatingPassword" do %>
+      <i class="bi bi-lock-fill me-2"></i>Password
+      <% if @minimum_password_length %>
+        <small class="text-muted">(<%= @minimum_password_length %> characters minimum)</small>
+      <% end %>
+    <% end %>
+  </div>
+
+  <!-- Password Confirmation Field -->
+  <div class="form-floating mb-3">
+    <%= f.password_field :password_confirmation, class: "form-control", id: "floatingPasswordConfirmation", placeholder: "Confirm Password", autocomplete: "new-password" %>
+    <%= f.label :password_confirmation, for: "floatingPasswordConfirmation" do %>
+      <i class="bi bi-lock-fill me-2"></i>Confirm Password
+    <% end %>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="d-grid gap-2">
+    <%= f.submit "Sign up", class: "btn btn-primary btn-lg" %>
+  </div>
+<% end %>
+
+<hr class="my-4">
+

@@ -1,0 +1,23 @@
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+
+
+.form-signin {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-primary {
+    background-color: #1877f2; /* Facebook's primary color */
+    border-color: #1877f2;
+  }
+  
+  .btn-primary:hover {
+    background-color: #166fe5;
+    border-color: #166fe5;
+  }

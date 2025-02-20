@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container-fluid">
+    <!-- Brand/Home Link -->
+    <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
+      <i class="bi bi-camera-reels-fill me-2"></i> VTube
+    <% end %>
+
+    <!-- Toggler Button for Mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- Home Link -->
+        <li class="nav-item">
+          <%= link_to root_path, class: "nav-link" do %>
+            <i class="bi bi-house-door-fill me-1"></i> Home
+          <% end %>
+        </li>
+      </ul>
+
+      <!-- Right-Aligned Menu -->
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <% if user_signed_in? %>
+          <!-- If User is Logged In -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-circle me-1"></i> Profile
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %></li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <%= link_to "Sign Out",destroy_user_session_path,data: { turbo_method: :delete,turbo_confirm: "Are you sure?" }, class: "dropdown-item text-danger" %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <!-- If User is Not Logged In -->
+          <li class="nav-item">
+            <%= link_to new_user_session_path, class: "nav-link" do %>
+              <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_user_registration_path, class: "nav-link" do %>
+              <i class="bi bi-person-plus me-1"></i> Sign Up
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

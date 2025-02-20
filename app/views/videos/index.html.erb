@@ -1,0 +1,99 @@
+<p style="color: green"><%= notice %></p>
+
+<!-- Search and Sort Section -->
+<div class="container-fluid bg-light py-3 mb-4 shadow-sm">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <%= search_form_for @q, url: videos_path, method: :get, class: "d-flex" do |f| %>
+          <%= f.search_field :title_cont, placeholder: "Search videos...", class: "form-control me-2" %>
+          <%= f.submit "Search", class: "btn btn-outline-primary" %>
+        <% end %>
+      </div>
+      <div class="col-md-6 text-md-end mt-3 mt-md-0">
+        <%= sort_link(@q, :title, "Sort by Title", default_order: :asc, class: "btn btn-outline-secondary") %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :title, "Today's Trending Videos" %>
+
+<!-- Main Content -->
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="fw-bold">Today's Trending Videos</h1>
+    <%= link_to new_video_path, class: "btn btn-primary btn-sm" do %>
+      <i class="bi bi-plus-lg"></i> Upload Video
+    <% end %>
+  </div>
+
+  <!-- Video Grid -->
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="videos">
+    <% @videos.each do |video| %>
+      <div class="col">
+        <div class="card shadow-sm h-100">
+          <!-- Video Player Section -->
+          <div class="card-img-top position-relative">
+            <% if video.video_file.attached? %>
+              <div class="embed-responsive embed-responsive-16by9">
+                <%= video_tag url_for(video.video_file), controls: false, class: "embed-responsive-item w-100", id: "video-#{video.id}" %>
+                <!-- Custom Controls -->
+                <div class="video-controls position-absolute bottom-0 start-0 end-0 p-3 bg-dark bg-opacity-75 d-flex justify-content-between align-items-center">
+                  <button class="btn btn-link text-white p-0" onclick="togglePlayPause(<%= video.id %>)">
+                    <i class="bi bi-play-fill fs-5" id="play-pause-icon-<%= video.id %>"></i>
+                  </button>
+                  <input type="range" class="form-range w-50 mx-2" min="0" max="100" value="0" oninput="seekVideo(<%= video.id %>, this.value)">
+                  <button class="btn btn-link text-white p-0" onclick="toggleMute(<%= video.id %>)">
+                    <i class="bi bi-volume-up-fill fs-5" id="volume-icon-<%= video.id %>"></i>
+                  </button>
+                </div>
+              </div>
+            <% else %>
+              <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                <i class="bi bi-file-earmark-video text-muted" style="font-size: 3rem;"></i>
+              </div>
+            <% end %>
+          </div>
+
+          <!-- Video Details -->
+          <div class="card-body">
+            <h5 class="card-title fw-bold mb-2"><%= video.title %></h5>
+            <p class="card-text text-muted small mb-3"><%= truncate(video.description, length: 100) %></p>
+            <%= link_to video_path(video), class: "btn btn-outline-primary btn-sm w-100" do %>
+              <i class="bi bi-eye"></i> View Video
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- JavaScript for Custom Video Controls -->
+<script>
+  function togglePlayPause(videoId) {
+    const video = document.getElementById(`video-${videoId}`);
+    const icon = document.getElementById(`play-pause-icon-${videoId}`);
+    if (video.paused) {
+      video.play();
+      icon.classList.replace('bi-play-fill', 'bi-pause-fill');
+    } else {
+      video.pause();
+      icon.classList.replace('bi-pause-fill', 'bi-play-fill');
+    }
+  }
+
+  function seekVideo(videoId, value) {
+    const video = document.getElementById(`video-${videoId}`);
+    video.currentTime = (value / 100) * video.duration;
+  }
+
+  function toggleMute(videoId) {
+    const video = document.getElementById(`video-${videoId}`);
+    const icon = document.getElementById(`volume-icon-${videoId}`);
+    video.muted = !video.muted;
+    icon.classList.toggle('bi-volume-mute-fill');
+    icon.classList.toggle('bi-volume-up-fill');
+  }
+</script>

@@ -1,0 +1,33 @@
+<div id="<%= dom_id video %>" class="card shadow-sm mb-4">
+  <div class="card-body">
+    <h5 class="card-title">
+      <i class="bi bi-film me-2"></i> <!-- Bootstrap Icon for Video -->
+      <strong>Title:</strong> <%= video.title %>
+    </h5>
+
+    <div class="mb-3">
+      <% if video.video_file.attached? %>
+        <div class="embed-responsive embed-responsive-16by9">
+          <%= video_tag video.video_file, controls: true, class: "embed-responsive-item w-100" %>
+        </div>
+      <% else %>
+        <p class="text-muted">
+          <i class="bi bi-exclamation-circle me-2"></i> <!-- Bootstrap Icon for Warning -->
+          No video uploaded.
+        </p>
+      <% end %>
+    </div>
+
+    <p class="card-text">
+      <i class="bi bi-card-text me-2"></i> <!-- Bootstrap Icon for Description -->
+      <strong>Description:</strong> <%= video.description %>
+    </p>
+
+    <p class="text-muted">
+      <i class="bi bi-person-circle me-2"></i> <!-- Bootstrap Icon for User -->
+      <strong>Uploaded by:</strong> <%= video.user.email %>
+    </p>
+
+    
+  </div>
+</div>

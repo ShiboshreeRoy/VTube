@@ -1,0 +1,48 @@
+<%= form_with(model: video, local: true) do |form| %>
+  <% if video.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(video.errors.count, "error") %> prohibited this video from being saved:</h4>
+      <ul>
+        <% video.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <!-- Title Field -->
+      <div class="mb-4">
+        <%= form.label :title, class: "form-label fw-bold" %>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-card-heading"></i></span>
+          <%= form.text_field :title, class: "form-control", placeholder: "Enter video title" %>
+        </div>
+      </div>
+
+      <!-- Description Field -->
+      <div class="mb-4">
+        <%= form.label :description, class: "form-label fw-bold" %>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-file-earmark-text"></i></span>
+          <%= form.text_area :description, class: "form-control", placeholder: "Enter video description", rows: 4 %>
+        </div>
+      </div>
+
+      <!-- Video File Field -->
+      <div class="mb-4">
+        <%= form.label :video_file, class: "form-label fw-bold" %>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-file-earmark-video"></i></span>
+          <%= form.file_field :video_file, class: "form-control" %>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="mb-4">
+        <%= form.submit "Upload Video", class: "btn btn-primary w-100 fw-bold" %>
+      </div>
+    </div>
+  </div>
+<% end %>

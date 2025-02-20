@@ -1,0 +1,36 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-12">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h2 class="card-title text-center mb-4">
+            <i class="bi bi-envelope-fill me-2"></i> Resend Confirmation Instructions
+          </h2>
+
+          <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "needs-validation", novalidate: true }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <!-- Email Field -->
+            <div class="mb-3">
+              <%= f.label :email, class: "form-label" %>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), placeholder: "Enter your email", required: true %>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid mb-3">
+              <%= f.submit "Resend Instructions", class: "btn btn-primary btn-lg" %>
+            </div>
+          <% end %>
+
+          <!-- Shared Links -->
+          <div class="text-center">
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
