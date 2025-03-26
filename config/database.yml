@@ -23,8 +23,8 @@ default: &default
 development:
   <<: *default
   database: video_platform_development
-  username: postgres
-  password: shibu009@
+  username: myuser
+  password: mypassword
   host: localhost
   port: 5432
 
@@ -61,6 +61,10 @@ development:
 test:
   <<: *default
   database: video_platform_test
+  username: myuser
+  password: mypassword
+  host: localhost
+  port: 5432
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
